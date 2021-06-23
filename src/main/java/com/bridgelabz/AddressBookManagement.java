@@ -29,7 +29,26 @@ public class AddressBookManagement {
 	        nameToAddressBookMap.put(name, object);
 	    }
 
-	   
+	     /**
+	     * Searching multiple Persons in AddressBook
+	     *
+	     * @param search
+	     */
+	    public static void searchPersonInBook(String search) {
+	        int numberOfPerson = 0;
+	        for (Map.Entry<String, AddressBookMain> stringAddressBookMainEntry : nameToAddressBookMap.entrySet()) {
+	            Map.Entry entry = (Map.Entry) stringAddressBookMainEntry;
+	            AddressBookMain a = (AddressBookMain) entry.getValue();
+	            List<Contact> list = a.getContactArray();
+	            for (Contact contact : list) {
+	                if (contact.getCity().equals(search) || contact.getState().equals(search)) {
+	                    System.out.println(contact);
+	                    numberOfPerson++;
+	                }
+	            }
+	            if (numberOfPerson == 0)
+	                System.out.println("No Person was found");
+	        }	   
 	    }
 
 }
